@@ -78,15 +78,17 @@ export default function Home() {
         ✨ | ✨ {data.marquetext} ✨ | ✨
       </marquee>
 
+
+
       {/* Grid Layout with Video and Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:px-40 mt-5">
         {/* Left side - Content */}
         <div className="flex flex-col justify-center">
-          <h1 className="text-2xl font-bold mb-4 text-black">
+          <h1 className="text-2xl font-bold mb-4 text-black md:text-left text-center">
             {data.title}
           </h1>
-          <p className="text-3xl text-red-900 font-bold"> {data.sort_heading}</p>
-          <p className="text-lg mb-2 text-black mt-5" dangerouslySetInnerHTML={{ __html: data.sort_description }}></p>
+          <p className="text-3xl text-red-900 font-bold md:text-left text-center"> {data.sort_heading}</p>
+          <p className="text-lg mb-2 text-black mt-5 text-center" dangerouslySetInnerHTML={{ __html: data.sort_description }}></p>
           <button
             className="bg-[#cab641] hover:bg-red-900 hover:text-white text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"
             onClick={() => window.open(data.book_now_link, "_blank")} 
@@ -110,9 +112,12 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-white py-10 md:px-40">
+
+
+
+      <div className="bg-white py-10 md:px-40 px-2">
         {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-3">
           {data.info_cards.map((card) => (
             <div key={card.id} className="bg-gray-100 px-2 rounded-lg shadow-lg flex items-start border border-red-900">
               <Image
@@ -129,9 +134,12 @@ export default function Home() {
           ))}
         </div>
 
+
+
+
         {/* Countdown Timer Section */}
-        <div className="mt-10 py-4 text-center bg-red-900 rounded-lg animate-zoom-out">
-          <div className="flex justify-center gap-10 text-4xl font-bold text-white">
+        <div className="md:mt-10 mt-5 py-4 text-center bg-red-900 rounded-lg animate-zoom-out">
+          <div className="flex justify-center md:gap-10 gap-2 md:text-4xl font-bold text-white">
             <span>{countdown.days} Days</span>
             <span>{countdown.hours} Hours</span>
             <span>{countdown.minutes} Minutes</span>
@@ -140,12 +148,18 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Bonus Section */}
-      <div className="p-4 md:px-40 mt-5 text-center bg-yellow-50">
-        <h2 className="text-4xl font-bold mb-4 p-5">{data.get_bonuses.length ? 'Get FREE Bonuses Worth ₹99/-' : ''}</h2>
-        <div className="flex flex-row justify-center space-x-4">
+
+
+     {/* Bonus Section */}
+      <div className="p-4 md:px-40 md:mt-5 text-center bg-yellow-50">
+        <h2 className="text-4xl font-bold mb-4 md:p-5">
+          {data.get_bonuses.length ? 'Get FREE Bonuses Worth ₹99/-' : ''}
+        </h2>
+        
+        {/* Flexbox Container */}
+        <div className="flex flex-col items-center justify-center md:flex-row md:justify-center space-y-4 md:space-y-0 md:space-x-4">
           {data.get_bonuses.map((bonus) => (
-            <div key={bonus.id} className="bg-yellow-500 p-4 flex flex-col items-center h-[300px] w-[350px] rounded-lg">
+            <div key={bonus.id} className="bg-yellow-500 p-4 flex flex-col items-center h-[300px] w-full md:w-[350px] rounded-lg">
               <h3 className="text-lg font-semibold mt-5">{bonus.title}</h3>
               <Image
                 src={bonus.image}
@@ -154,44 +168,53 @@ export default function Home() {
                 height={150}
                 className="mb-2 mt-3"
               />
-              <p className="mt-3">{bonus.content}</p>
+              <p className="mt-3 text-center">{bonus.content}</p>
             </div>
           ))}
         </div>
-        <button className="bg-[#cab641] hover:text-white hover:bg-red-900 text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"  onClick={() => window.open(data.book_now_link, "_blank")} >
-        <span className="z-10 relative">{data.book_now_text}</span>
-        <div className="absolute inset-0 w-full h-full bg-transparent animate-wave3 group-hover:animate-wave-hover"></div>
-      </button>
+
+        {/* Button */}
+        <button 
+          className="bg-[#cab641] hover:text-white hover:bg-red-900 text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"  
+          onClick={() => window.open(data.book_now_link, "_blank")}
+        >
+          <span className="z-10 relative">{data.book_now_text}</span>
+          <div className="absolute inset-0 w-full h-full bg-transparent animate-wave3 group-hover:animate-wave-hover"></div>
+        </button>
       </div>
 
 
-
-      
-      <div className="bg-white py-10 px-5">
-  <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center py-5">
-  क्या आपने कभी सोचा है कि आयुर्वेद आपकी किडनी को फिर से स्वस्थ बना सकता है?
+      <div className="bg-white md:py-10 py-5 px-5">
+  <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center py-5 md:px-60">
+    क्या आपने कभी सोचा है कि आयुर्वेद आपकी किडनी को फिर से स्वस्थ बना सकता है?
   </h2>
+  
+  {/* Flex Container for Vertical Layout */}
+  <div className="max-w-4xl mx-auto flex flex-col md:flex-row space-y-6 md:space-y-0">
+    
+    {/* Left Side Content */}
+    <div className="flex flex-col flex-1 space-y-6">
+      {data.how_this_help_you.map((item) => (
+        <div key={item.id} className="flex flex-col justify-center items-center">
+          <div className="flex justify-center mb-6">
+            <Image
+              src={item.image}
+              width={200}
+              height={200}
+              className="mb-2 mt-3"
+            />
+          </div>
+          <p className="text-2xl font-semibold text-red-900">{item.title}</p>
 
-  <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-    {data.how_this_help_you.map((item) => (
-      <div key={item.id} className="flex flex-col justify-center items-center">
-        <div className="flex justify-center mb-6">
-          <Image
-            src={item.image}
-            width={200}
-            height={200}
-            className="mb-2 mt-3"
-          />
+          <a href="#" className="text-black text-lg font-semibold text-center py-3 px-6 rounded-lg mb-5">
+            {item.sort_description}
+          </a>
         </div>
-        <p className="text-2xl font-semibold text-red-900">{item.title}</p>
-      
-        <a href="#" className="text-black text-lg font-semibold text-center py-3 px-6 rounded-lg mb-5">
-          {item.sort_description}
-        </a>
-      </div>
-    ))}
+      ))}
+    </div>
 
-    <div className="flex flex-col justify-center">
+    {/* Checkbox Options Section on Right Side */}
+    <div className="flex flex-col justify-center flex-1 md:ml-10">
       <div className="mb-4">
         {data.how_this_help_you.map((item) => (
           <React.Fragment key={item.id}>
@@ -227,12 +250,14 @@ export default function Home() {
         ))}
       </div>
 
-      <button className="bg-[#cab641] hover:text-white hover:bg-red-900 text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"  onClick={() => window.open(data.book_now_link, "_blank")} >
+      {/* Button Section */}
+      <button 
+        className="bg-[#cab641] hover:text-white hover:bg-red-900 text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"  
+        onClick={() => window.open(data.book_now_link, "_blank")}
+      >
         <span className="z-10 relative">{data.book_now_text}</span>
         <div className="absolute inset-0 w-full h-full bg-transparent animate-wave3 group-hover:animate-wave-hover"></div>
       </button>
-
-      
     </div>
   </div>
 </div>
@@ -241,44 +266,51 @@ export default function Home() {
 
 
 
+
 <div className="bg-red-900 py-10 px-5">
-  <h2 className="text-3xl font-bold mb-4 text-white text-center py-5">
-  किडनी केयर डाइट लाइव वेबिनार में आप सीखेंगे
+  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white text-center py-5">
+    किडनी केयर डाइट लाइव वेबिनार में आप सीखेंगे
   </h2>
 
   {/* Central Vertical Line */}
-  <div className="max-w-4xl mx-auto flex items-start relative">
-    <div className="absolute left-1/2 top-0 h-full border-l-4 border-white transform -translate-x-1/2" />
+  <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start relative">
+    <div className="absolute left-1/2 top-0 h-full border-l-4 hidden md:block border-white transform -translate-x-1/2" />
 
     {/* Left Section for 01 */}
-    {data.whatyouget[0] && (
-      <div className="w-1/2 p-4 flex flex-col items-end mb-8">
+    <div className="w-full md:w-1/2 p-4 flex flex-col items-center md:items-end mb-8">
+      {data.whatyouget[0] && (
         <ul className="text-white list-disc list-inside ml-2">
-          <p className="text-7xl text-white text-left">{data.whatyouget[0].countnumber.toString().padStart(2, '0')}</p>
-          <h3 className="text-2xl font-semibold mb-2 text-white">{data.whatyouget[0].title}</h3>
+          <p className="text-6xl md:text-7xl text-white text-center md:text-left md:pb-2 pb-5">
+            {data.whatyouget[0].countnumber.toString().padStart(2, '0')}
+          </p>
+          <h3 className="text-xl md:text-2xl font-semibold mb-2 text-white text-center md:text-left">{data.whatyouget[0].title}</h3>
           <div dangerouslySetInnerHTML={{ __html: data.whatyouget[0].description }} />
         </ul>
-      </div>
-    )}
+      )}
+    </div>
 
     {/* Right Section for 02 */}
-    {data.whatyouget[1] && (
-      <div className="w-1/2 p-4 flex flex-col items-start mb-8 ml-6">
-        <ul className="text-white list-disc list-inside ml-4">
-          <p className="text-7xl text-white">{data.whatyouget[1].countnumber.toString().padStart(2, '0')}</p>
-          <h3 className="text-2xl font-semibold mb-2 text-white">{data.whatyouget[1].title}</h3>
+    <div className="w-full md:w-1/2 p-4 flex flex-col items-center md:items-start mb-8">
+      {data.whatyouget[1] && (
+        <ul className="text-white list-disc list-inside ml-2">
+          <p className="text-6xl md:text-7xl text-white text-center md:text-left md:pb-2 pb-5">
+            {data.whatyouget[1].countnumber.toString().padStart(2, '0')}
+          </p>
+          <h3 className="text-xl md:text-2xl font-semibold mb-2 text-white text-center md:text-left">{data.whatyouget[1].title}</h3>
           <div dangerouslySetInnerHTML={{ __html: data.whatyouget[1].description }} />
         </ul>
-      </div>
-    )}
+      )}
+    </div>
   </div>
 
   {/* Centered Bottom Section for 03 */}
   {data.whatyouget[2] && (
     <div className="max-w-4xl mx-auto flex flex-col items-center mb-8 mt-5">
-      <ul className="text-white list-disc list-inside ml-4">
-        <p className="text-7xl text-white text-center">{data.whatyouget[2].countnumber.toString().padStart(2, '0')}</p>
-        <h3 className="text-2xl font-semibold mb-2 text-white">{data.whatyouget[2].title}</h3>
+      <ul className="text-white list-disc list-inside ml-2">
+        <p className="text-6xl md:text-7xl text-white text-center md:pb-2 pb-5">
+          {data.whatyouget[2].countnumber.toString().padStart(2, '0')}
+        </p>
+        <h3 className="text-xl md:text-2xl font-semibold mb-2 text-white text-center">{data.whatyouget[2].title}</h3>
         <div dangerouslySetInnerHTML={{ __html: data.whatyouget[2].description }} />
       </ul>
     </div>
@@ -286,15 +318,9 @@ export default function Home() {
 </div>
 
 
-
-
-
-
-
-
 {/* Countdown Timer Section */}
 <div
-  className="py-4 rounded-lg grid grid-cols-3 items-center gap-0 md:px-40" 
+  className="py-4 rounded-lg grid grid-cols-1 md:grid-cols-3 items-center gap-0 md:px-40" 
   style={{
     backgroundImage: "url('/Group-35371.webp')", 
     backgroundSize: "cover", 
@@ -303,20 +329,14 @@ export default function Home() {
   }}
 >
   {/* First Grid Item: Text */}
-  <div className="text-xl font-bold text-black flex justify-center items-center px-1"> {/* Added horizontal padding */}
-    <span className="text-red-900 font-bold text-2xl">Time is Running Out. Grab Your Spot Fast!</span>
+  <div className="text-xl font-bold text-black flex justify-center items-center px-1">
+    <span className="text-red-900 font-bold text-2xl text-center">
+      Time is Running Out. Grab Your Spot Fast!
+    </span>
   </div>
 
-  {/* Second Grid Item: Button */}
-  <div className="flex justify-center items-center px-1"> {/* Added horizontal padding */}
-    <button className="bg-[#cab641] hover:bg-red-900 text-black hover:text-white font-bold py-2 px-4 rounded relative overflow-hidden group"  onClick={() => window.open(data.book_now_link, "_blank")}>
-      <span className="z-10 relative">{data.book_now_text}</span>
-      <div className="absolute inset-0 w-full h-full bg-transparent animate-wave4 group-hover:animate-wave-hover"></div>
-    </button>
-  </div>
-
-  {/* Third Grid Item: Countdown Timer */}
-  <div className="flex items-center justify-center gap-2 text-xl font-bold px-1">
+  {/* Second Grid Item: Countdown Timer */}
+  <div className="flex items-center justify-center gap-2 text-xl font-bold px-1 mt-4 md:mt-0">
     <span className="flex flex-col items-center justify-center w-20 h-20 bg-red-900 text-white rounded-lg animate-zoom-out">
       <span className="text-4xl">{countdown.days}</span>
       <span className="text-sm">Days</span>
@@ -334,12 +354,23 @@ export default function Home() {
       <span className="text-sm">Seconds</span>
     </span>
   </div>
+
+  {/* Third Grid Item: Button */}
+  <div className="flex justify-center items-center px-1 md:mt-0 mt-5">
+    <button
+      className="bg-[#cab641] hover:bg-red-900 text-black w-[20em] md:w-[15em] hover:text-white font-bold py-2 px-4 rounded relative overflow-hidden group"  
+      onClick={() => window.open(data.book_now_link, "_blank")}
+    >
+      <span className="z-10 relative">{data.book_now_text}</span>
+      <div className="absolute inset-0 w-full h-full bg-transparent animate-wave4 group-hover:animate-wave-hover"></div>
+    </button>
+  </div>
 </div>
 
 
     <div className="bg-red-900 text-white py-8">
       {/* Mentor Section */}
-      <div className="m-10 border border-spacing-2 border-white p-5">
+      <div className="md:m-10 m-2 border border-spacing-2 border-white md:p-5 p-2">
         
       <h2 className="text-3xl font-bold mb-2 text-center">Meet Our Mentors</h2>
       {data.ourmentor.map((mentor, index) => (
@@ -351,7 +382,7 @@ export default function Home() {
             <p className="text-sm mb-4" dangerouslySetInnerHTML={{ __html: mentor.description }} />
 
             {/* Achievement Cards Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:mt-8 px-4">
               {data.ourmentorcarddata.map((item) => (
                 <div key={item.id} className="bg-red-900 text-white rounded-lg p-1 text-center shadow-lg">
                   <h4 className="text-xl font-bold">{item.title}</h4>
@@ -382,7 +413,7 @@ export default function Home() {
     </div>
 
 
-    <div className="p-6 px-10 bg-white">
+    <div className="p-6 md:px-10 bg-white">
       <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">
         Who Should Join This Webinar?
       </h2>
@@ -415,8 +446,8 @@ export default function Home() {
 <h2 className="text-black text-3xl text-center font-bold mb-4 mt-5">
   Time is Running Out. Grab Your Spot Fast!
 </h2>
-<div className="mt-10 py-4 text-center rounded-lg border-2 border-red-900 max-w-[45em] mx-auto">
-  <div className="flex justify-center gap-10 text-4xl font-bold text-red-900">
+<div className="md:mt-10 mt-5 py-4 text-center rounded-lg border-2 border-red-900 md:max-w-[45em] max-w-[22em] mx-auto">
+  <div className="flex justify-center md:gap-10 gap-2 md:text-4xl font-bold text-red-900">
     <span className="animate-zoom-out">{countdown.days} Days</span>
     <span className="animate-zoom-out">{countdown.hours} Hours</span>
     <span className="animate-zoom-out">{countdown.minutes} Minutes</span>
@@ -512,7 +543,7 @@ export default function Home() {
       
 
       {/* Frequently Asked Questions Section */}
-      <div className='md:py-10 py-10 mb-10 px-10'>
+      <div className='md:py-10 py-10 mb-24 px-10'>
         <h2 className="md:text-5xl text-2xl font-bold mb-4 text-center text-black">Frequently Asked Questions</h2>
         <Collapse defaultActiveKey={['1']}>
           {data.kidney_frequently_asked_question.map((item, index) => (
@@ -532,43 +563,32 @@ export default function Home() {
 
 
 
+
+
 {/* Countdown Timer Section */}
-<div className="fixed bottom-0 left-0 right-0 py-1 text-center flex items-center justify-between px-10 bg-red-900 z-10">
-  <div className="text-center text-2xl font-bold text-white">
-    <p>{data.price}</p>
+<div className="fixed bottom-0 left-0 right-0 py-2 md:px-10 bg-red-900 z-10">
+  <div className="flex flex-col md:flex-row items-center justify-between">
+    <div className="text-center md:text-2xl font-bold text-white mb-2 md:mb-0">
+      <p>{data.price}</p>
+    </div>
+
+    {/* Countdown Timer Section */}
+    <div className="flex items-center justify-center md:gap-5 gap-2 md:text-3xl font-bold text-white mb-2 md:mb-0">
+      <span className="animate-zoom-out">{countdown.days} <span className="text-lg">Days</span></span>
+      <span className="animate-zoom-out">{countdown.hours} <span className="text-lg">Hours</span></span>
+      <span className="animate-zoom-out">{countdown.minutes} <span className="text-lg">Minutes</span></span>
+      <span className="animate-zoom-out">{countdown.seconds} <span className="text-lg">Seconds</span></span>
+    </div>
+
+    {/* Button Section */}
+    <button 
+      className="bg-[#cab641] hover:bg-red-900 hover:text-white text-white font-bold md:py-2 py-1 px-4 rounded relative overflow-hidden group"
+      onClick={() => window.open(data.book_now_link, "_blank")}
+    >
+      <span className="z-10 relative">{data.book_now_text}</span>
+      <div className="absolute inset-0 w-full h-full bg-transparent animate-wave5 group-hover:animate-wave-hover"></div>
+    </button>
   </div>
-
-  <div className="flex justify-center gap-10 text-3xl font-bold text-white">
-    <span className="animate-zoom-out">{countdown.days} Days</span>
-    <span className="animate-zoom-out">{countdown.hours} Hours</span>
-    <span className="animate-zoom-out">{countdown.minutes} Minutes</span>
-    <span className="animate-zoom-out">{countdown.seconds} Seconds</span>
-  </div>
-
-  {/* Button Section */}
-  <button className="bg-[#cab641] hover:bg-red-900 hover:text-white text-white font-bold py-2 px-4 rounded relative overflow-hidden group" onClick={() => window.open(data.book_now_link, "_blank")}>
-    <span className="z-10 relative">{data.book_now_text}</span>
-    <div className="absolute inset-0 w-full h-full bg-transparent animate-wave5 group-hover:animate-wave-hover"></div>
-  </button>
-  
-  <style jsx>{`
-    @keyframes wave5 {
-      0% {
-        background: linear-gradient(90deg, #7f1d1d, #991b1b); 
-      }
-      50% {
-        background: linear-gradient(90deg, #991b1b, #7f1d1d);
-      }
-      100% {
-        background: linear-gradient(90deg, #7f1d1d, #991b1b);
-      }
-    }
-
-    .animate-wave5 {
-      animation: wave 2s infinite;
-      background: linear-gradient(90deg, rgba(127, 29, 29, 0.1), rgba(127, 29, 29, 0.4), rgba(127, 29, 29, 0.1));
-    }
-  `}</style>
 </div>
 
 
