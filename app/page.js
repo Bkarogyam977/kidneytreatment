@@ -1,16 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
 import React from "react";
-import { FaClock, FaCalendarAlt, FaGift, FaVideo } from "react-icons/fa";
 import Image from 'next/image';
-import axios from 'axios';
-import { Collapse } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
+import axios from 'axios';
+import { Collapse } from 'antd';
 
 const { Panel } = Collapse;
+
+const truncateDescription = (description, maxWords) => {
+  const words = description.split(' ');
+  return words.length > maxWords ? words.slice(0, maxWords).join(' ') + '...' : description;
+};
+
+
 
 export default function Home() {
   const [data, setData] = useState(null);
@@ -136,7 +142,7 @@ export default function Home() {
 
       {/* Bonus Section */}
       <div className="p-4 md:px-40 mt-5 text-center bg-yellow-50">
-        <h2 className="text-4xl font-bold mb-4 p-5">{data.get_bonuses.length ? 'Get FREE Bonuses Worth ₹999/-' : ''}</h2>
+        <h2 className="text-4xl font-bold mb-4 p-5">{data.get_bonuses.length ? 'Get FREE Bonuses Worth ₹99/-' : ''}</h2>
         <div className="flex flex-row justify-center space-x-4">
           {data.get_bonuses.map((bonus) => (
             <div key={bonus.id} className="bg-yellow-500 p-4 flex flex-col items-center h-[300px] w-[350px] rounded-lg">
@@ -144,14 +150,18 @@ export default function Home() {
               <Image
                 src={bonus.image}
                 alt={bonus.title}
-                width={200}
-                height={200}
+                width={150}
+                height={150}
                 className="mb-2 mt-3"
               />
               <p className="mt-3">{bonus.content}</p>
             </div>
           ))}
         </div>
+        <button className="bg-[#cab641] hover:text-white hover:bg-red-900 text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"  onClick={() => window.open(data.book_now_link, "_blank")} >
+        <span className="z-10 relative">{data.book_now_text}</span>
+        <div className="absolute inset-0 w-full h-full bg-transparent animate-wave3 group-hover:animate-wave-hover"></div>
+      </button>
       </div>
 
 
@@ -159,7 +169,7 @@ export default function Home() {
       
       <div className="bg-white py-10 px-5">
   <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center py-5">
-    क्या आपने कभी सोचा है लाल किताब कैसे आपकी मदद कर सकती है?
+  क्या आपने कभी सोचा है कि आयुर्वेद आपकी किडनी को फिर से स्वस्थ बना सकता है?
   </h2>
 
   <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -173,9 +183,9 @@ export default function Home() {
             className="mb-2 mt-3"
           />
         </div>
-        <p className="text-2xl font-semibold mb-4 text-red-900">{item.title}</p>
-        <p className="text-lg text-gray-600 mb-4">{item.sort_description}</p>
-        <a href="#" className="text-black text-lg font-semibold py-3 px-6 rounded-lg mb-5">
+        <p className="text-2xl font-semibold text-red-900">{item.title}</p>
+      
+        <a href="#" className="text-black text-lg font-semibold text-center py-3 px-6 rounded-lg mb-5">
           {item.sort_description}
         </a>
       </div>
@@ -233,7 +243,7 @@ export default function Home() {
 
 <div className="bg-red-900 py-10 px-5">
   <h2 className="text-3xl font-bold mb-4 text-white text-center py-5">
-    Lal Kitab Webinar में आप सीखेगें
+  किडनी केयर डाइट लाइव वेबिनार में आप सीखेंगे
   </h2>
 
   {/* Central Vertical Line */}
@@ -327,44 +337,11 @@ export default function Home() {
 </div>
 
 
-
-
-<div className="p-6 px-10 bg-white">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">
-        Why Learn Lal Kitab If You&apos;ve Learned Astrology?
-      </h2>
-      
-      <h3 className="text-3xl font-semibold text-gray-700 mb-2 text-center">
-        ज्‍योतिष और लाल किताब में क्‍या अतंर है?
-      </h3>
-
-      {data.whatdefrent.map((item, index) => ( // Added index as second parameter
-        <div key={item.id} className={`flex flex-col md:flex-row items-center justify-center mt-6 md:px-[10em] ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
-          {/* Section for Image and Text */}
-          <div className="flex flex-col mt-5">
-            <h2 className="text-2xl font-bold mb-1">{item.title}</h2>
-            <p className="text-lg mb-1 pl-10 mt-3" dangerouslySetInnerHTML={{ __html: item.description }} />
-          </div>
-          
-          {/* Image Section */}
-          <div className="flex mt-14 ml-10">
-            <Image
-              src={item.image} // Use the image URL from the provided data
-              alt={item.title}
-              width={200}
-              height={200}
-              className="rounded-lg"
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-
-
-
     <div className="bg-red-900 text-white py-8">
       {/* Mentor Section */}
-      <h2 className="text-2xl font-bold mb-2 text-center">Meet Our Mentors</h2>
+      <div className="m-10 border border-spacing-2 border-white p-5">
+        
+      <h2 className="text-3xl font-bold mb-2 text-center">Meet Our Mentors</h2>
       {data.ourmentor.map((mentor, index) => (
         <div key={mentor.id} className="flex flex-col md:flex-row items-center justify-center mt-6 md:px-28">
           {/* Left Section: Mentor Information */}
@@ -376,9 +353,9 @@ export default function Home() {
             {/* Achievement Cards Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 px-4">
               {data.ourmentorcarddata.map((item) => (
-                <div key={item.id} className="bg-white text-black rounded-lg p-4 text-center shadow-lg">
+                <div key={item.id} className="bg-red-900 text-white rounded-lg p-1 text-center shadow-lg">
                   <h4 className="text-xl font-bold">{item.title}</h4>
-                  <p className="text-sm">{item.description}</p>
+                  <p className="text-[10px]">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -401,6 +378,7 @@ export default function Home() {
           </div>
         </div>
       ))}
+      </div>
     </div>
 
 
@@ -409,7 +387,7 @@ export default function Home() {
         Who Should Join This Webinar?
       </h2>
     {data.whoshouldjoin.map((item, index) => ( // Added index as second parameter
-        <div key={item.id} className={`flex flex-col md:flex-row items-center justify-center mt-6 md:px-[10em] ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+        <div key={item.id} className={`flex flex-col md:flex-row items-center justify-center mt-6 md:px-[5em] ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
           {/* Section for Image and Text */}
           <div className="flex flex-col mt-5">
             <h2 className="text-2xl font-bold mb-1">{item.title}</h2>
@@ -432,17 +410,125 @@ export default function Home() {
 
 
 
+    
+{/* Countdown Timer Section */}
+<h2 className="text-black text-3xl text-center font-bold mb-4 mt-5">
+  Time is Running Out. Grab Your Spot Fast!
+</h2>
+<div className="mt-10 py-4 text-center rounded-lg border-2 border-red-900 max-w-[45em] mx-auto">
+  <div className="flex justify-center gap-10 text-4xl font-bold text-red-900">
+    <span className="animate-zoom-out">{countdown.days} Days</span>
+    <span className="animate-zoom-out">{countdown.hours} Hours</span>
+    <span className="animate-zoom-out">{countdown.minutes} Minutes</span>
+    <span className="animate-zoom-out">{countdown.seconds} Seconds</span>
+  </div>
+</div>
+
+{/* Button Section */}
+<div className="mt-5 flex justify-center">
+  <button className="bg-[#cab641] hover:bg-red-900 hover:text-white text-black font-bold py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group" onClick={() => window.open(data.book_now_link, "_blank")}>
+    <span className="z-10 relative">{data.book_now_text}</span>
+    <div className="absolute inset-0 w-full h-full bg-transparent animate-wave5 group-hover:animate-wave-hover"></div>
+  </button>
+  
+<style jsx>{`
+  @keyframes wave5 {
+    0% {
+      background: linear-gradient(90deg, #7f1d1d, #991b1b); 
+    }
+    50% {
+      background: linear-gradient(90deg, #991b1b, #7f1d1d);
+    }
+    100% {
+      background: linear-gradient(90deg, #7f1d1d, #991b1b);
+    }
+  }
+
+  .animate-wave5 {
+    animation: wave 2s infinite;
+    background: linear-gradient(90deg, rgba(127, 29, 29, 0.1), rgba(127, 29, 29, 0.4), rgba(127, 29, 29, 0.1));
+  }
+`}</style>
+</div>
 
 
 
 
 
+      {/* Testimonials Section */}
+      <div className="testimonial-section md:p-10 bg-blue-500 md:px-[5em] p-5 mt-10">
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={20}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          breakpoints={{
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 3, spaceBetween: 30 },
+          }}
+          modules={[Pagination, Autoplay]}
+          className="mySwiper"
+        >
+          {data.kidney_patent_testimonials && data.kidney_patent_testimonials.length > 0 ? (
+            data.kidney_patent_testimonials.map((testimonial, index) => (
+              <SwiperSlide key={index} className="p-4">
+                <div
+                  className="border border-gray-300 rounded-lg shadow-lg p-5 bg-blue-500 text-center"
+                  style={{ minHeight: '400px', maxHeight: '500px' }}
+                >
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-24 h-24 rounded-full mx-auto mb-4"
+                  />
+                  <h4 className="text-lg font-bold mb-2 text-white">{testimonial.name}</h4>
+                  <p className="text-sm italic mb-4 text-white">
+                    &quot;{truncateDescription(testimonial.description, 50)}&quot;
+                  </p>
+                  <div className="flex justify-center items-center mb-2 space-x-2">
+                    <div className="flex">
+                      {[...Array(testimonial.stars)].map((_, index) => (
+                        <span key={index} className="text-yellow-500 text-xl">★</span>
+                      ))}
+                      {[...Array(5 - testimonial.stars)].map((_, index) => (
+                        <span key={index} className="text-white">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm font-semibold text-white">{testimonial.rating || "No ratings"}</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))
+          ) : (
+            <SwiperSlide>
+              <div className="text-center p-6">
+                <p className="text-white">No testimonials available.</p>
+              </div>
+            </SwiperSlide>
+          )}
+        </Swiper>
+      </div>
 
+      
 
-
-
-
-
+      {/* Frequently Asked Questions Section */}
+      <div className='md:py-10 py-10 mb-10 px-10'>
+        <h2 className="md:text-5xl text-2xl font-bold mb-4 text-center text-black">Frequently Asked Questions</h2>
+        <Collapse defaultActiveKey={['1']}>
+          {data.kidney_frequently_asked_question.map((item, index) => (
+            <Panel
+              header={
+                <div className="bg-green-900 text-white p-2 rounded cursor-pointer hover:bg-green-600">
+                  {item.question}
+                </div>
+              }
+              key={index + 1}
+            >
+              <p>{item.answer}</p>
+            </Panel>
+          ))}
+        </Collapse>
+      </div>
 
 
 
