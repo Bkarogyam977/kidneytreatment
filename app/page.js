@@ -153,7 +153,7 @@ export default function Home() {
      {/* Bonus Section */}
       <div className="p-4 md:px-40 md:mt-5 text-center bg-yellow-50">
         <h2 className="text-4xl font-bold mb-4 md:p-5">
-          {data.get_bonuses.length ? 'Get FREE Bonuses Worth ₹99/-' : ''}
+          {data.get_bonuses.length ? 'Get FREE Bonuses Worth ₹999/-' : ''}
         </h2>
         
         {/* Flexbox Container */}
