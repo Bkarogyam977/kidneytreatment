@@ -42,7 +42,7 @@ export default function Home() {
     <div className="bg-white">
       {/* Marquee with Tailwind styling */}
       <marquee className="bg-red-900 text-white py-1 text-xl font-bold">
-        ✨ | ✨ Limited Seats: Join India's First Lal Kitab Webinar ✨ | ✨ Get FREE Bonuses worth ₹999/ ✨ | ✨
+        ✨ | ✨ Limited Seats: Join India&apos;s First Lal Kitab Webinar ✨ | ✨ Get FREE Bonuses worth ₹999/ ✨ | ✨
       </marquee>
 
       {/* Grid Layout with Video and Content */}
@@ -452,7 +452,7 @@ export default function Home() {
 
 <div className="p-6 px-10 bg-white">
   <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">
-    Why Learn Lal Kitab If You've Learned Astrology?
+    Why Learn Lal Kitab If You&apos;ve Learned Astrology?
   </h2>
   
   <h3 className="text-3xl font-semibold text-gray-700 mb-2 text-center">
@@ -463,8 +463,8 @@ export default function Home() {
 <div className="flex flex-col md:flex-row items-center justify-center mt-6 md:px-[10em]">
   {/* Left Section: Centered Text */}
   <div className="flex flex-col mt-5">
-    <h2 className="text-2xl font-bold mb-1">You've mastered Astrology, Grahs, Rashi’s and more.</h2> {/* Reduced bottom margin */}
-    <p className="text-lg mb-1 pl-10 mt-3">But what if there’s a hidden gem waiting to be discovered? Everything you read, hear, or practice related to astrology today is a part of Parashari astrology. Parashari astrology is vast and takes a lifetime to master.</p> {/* Reduced bottom margin */}
+    <h2 className="text-2xl font-bold mb-1">You&apos;ve mastered Astrology, Grahs, Rashi&apos;s and more.</h2> {/* Reduced bottom margin */}
+    <p className="text-lg mb-1 pl-10 mt-3">But what if there&apos;s a hidden gem waiting to be discovered? Everything you read, hear, or practice related to astrology today is a part of Parashari astrology. Parashari astrology is vast and takes a lifetime to master.</p> {/* Reduced bottom margin */}
   </div>
 
   {/* Right Section: Centered Image */}
@@ -492,8 +492,8 @@ export default function Home() {
   </div>
   {/* Left Section: Centered Text */}
   <div className="flex flex-col mt-5 ml-10">
-    <h2 className="text-2xl font-bold mb-1">You've mastered Astrology, Grahs, Rashi’s and more.</h2> {/* Reduced bottom margin */}
-    <p className="text-lg mb-1 pl-10 mt-3">But what if there’s a hidden gem waiting to be discovered? Everything you read, hear, or practice related to astrology today is a part of Parashari astrology. Parashari astrology is vast and takes a lifetime to master.</p> {/* Reduced bottom margin */}
+    <h2 className="text-2xl font-bold mb-1">You&apos;ve mastered Astrology, Grahs, Rashi&apos;s and more.</h2> {/* Reduced bottom margin */}
+    <p className="text-lg mb-1 pl-10 mt-3">But what if there&apos;s a hidden gem waiting to be discovered? Everything you read, hear, or practice related to astrology today is a part of Parashari astrology. Parashari astrology is vast and takes a lifetime to master.</p> {/* Reduced bottom margin */}
   </div>
 </div>
 </div>
