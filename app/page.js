@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import React from "react";
 import { FaClock, FaCalendarAlt, FaGift, FaVideo } from "react-icons/fa";
 import Image from 'next/image';
 import axios from 'axios';
@@ -17,7 +18,7 @@ export default function Home() {
   
   // Fetch data from the API on component mount
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/lapiskidneytreatments/')
+    axios.get('https://www.bkarogyam.com/lapiskidneytreatments/')
       .then(response => {
         setData(response.data[0]);
       })
@@ -80,10 +81,12 @@ export default function Home() {
           </h1>
           <p className="text-3xl text-red-900 font-bold"> {data.sort_heading}</p>
           <p className="text-lg mb-2 text-black mt-5" dangerouslySetInnerHTML={{ __html: data.sort_description }}></p>
-          <button className="bg-[#cab641] hover:bg-red-900 hover:text-white text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group">
+          <button
+            className="bg-[#cab641] hover:bg-red-900 hover:text-white text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"
+            onClick={() => window.open(data.book_now_link, "_blank")} 
+          >
             <span className="z-10 relative">{data.book_now_text}</span>
           </button>
-          
         </div>
 
         {/* Right side - YouTube Video */}
@@ -171,70 +174,117 @@ export default function Home() {
           />
         </div>
         <p className="text-2xl font-semibold mb-4 text-red-900">{item.title}</p>
+        <p className="text-lg text-gray-600 mb-4">{item.sort_description}</p>
         <a href="#" className="text-black text-lg font-semibold py-3 px-6 rounded-lg mb-5">
-          Join our live webinar and learn A to Z of Lal Kitab & its remedies
+          {item.sort_description}
         </a>
       </div>
     ))}
 
     <div className="flex flex-col justify-center">
       <div className="mb-4">
-        <label className="flex items-center mb-4">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-          <span className="ml-2 text-lg text-gray-600">क्या Relationship में लगातार समस्याएं आ रही हैं?</span>
-        </label>
-        <label className="flex items-center mb-4">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-          <span className="ml-2 text-lg text-gray-600">शादी और लाइफ पार्टनर के उपाय कर-कर के थक गये हैं?</span>
-        </label>
-        <label className="flex items-center mb-4">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-          <span className="ml-2 text-lg text-gray-600">क्या Business/ Career में सफलता नहीं मिल रही?</span>
-        </label>
-        <label className="flex items-center mb-4">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-          <span className="ml-2 text-lg text-gray-600">क्या पैसों की तंगी से जूझ रहे हैं?</span>
-        </label>
-        <label className="flex items-center mb-4">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-          <span className="ml-2 text-lg text-gray-600">क्या Health issues ने जीवन को कठिन बना दिया है?</span>
-        </label>
-        <label className="flex items-center mb-4">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-          <span className="ml-2 text-lg text-gray-600">क्या आप हमेशा Stress और Anxiety महसूस करते हैं?</span>
-        </label>
-        <label className="flex items-center mb-4">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-          <span className="ml-2 text-lg text-gray-600">कुछ न कुछ स्‍वास्‍थ्‍यर समस्‍यायें घर में बनी ही रहती हैं?</span>
-        </label>
+        {data.how_this_help_you.map((item) => (
+          <React.Fragment key={item.id}>
+            <label className="flex items-center mb-4">
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+              <span className="ml-2 text-lg text-gray-600">{item.options1}</span>
+            </label>
+            <label className="flex items-center mb-4">
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+              <span className="ml-2 text-lg text-gray-600">{item.options2}</span>
+            </label>
+            <label className="flex items-center mb-4">
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+              <span className="ml-2 text-lg text-gray-600">{item.options3}</span>
+            </label>
+            <label className="flex items-center mb-4">
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+              <span className="ml-2 text-lg text-gray-600">{item.options4}</span>
+            </label>
+            <label className="flex items-center mb-4">
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+              <span className="ml-2 text-lg text-gray-600">{item.options5}</span>
+            </label>
+            <label className="flex items-center mb-4">
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+              <span className="ml-2 text-lg text-gray-600">{item.options6}</span>
+            </label>
+            <label className="flex items-center mb-4">
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+              <span className="ml-2 text-lg text-gray-600">{item.options7}</span>
+            </label>
+          </React.Fragment>
+        ))}
       </div>
 
-      <button className="bg-[#cab641] hover:text-white hover:bg-red-900 text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group">
-        <span className="z-10 relative">Avail Yours! Register Now</span>
+      <button className="bg-[#cab641] hover:text-white hover:bg-red-900 text-black font-bold mt-5 py-2 px-4 rounded w-full md:w-[500px] relative overflow-hidden group"  onClick={() => window.open(data.book_now_link, "_blank")} >
+        <span className="z-10 relative">{data.book_now_text}</span>
         <div className="absolute inset-0 w-full h-full bg-transparent animate-wave3 group-hover:animate-wave-hover"></div>
       </button>
 
-      <style jsx>{`
-        @keyframes wave3 {
-          0% {
-            background: linear-gradient(90deg, #7f1d1d, #991b1b);
-          }
-          50% {
-            background: linear-gradient(90deg, #991b1b, #7f1d1d);
-          }
-          100% {
-            background: linear-gradient(90deg, #7f1d1d, #991b1b);
-          }
-        }
-
-        .animate-wave3 {
-          animation: wave 2s infinite;
-          background: linear-gradient(90deg, rgba(127, 29, 29, 0.1), rgba(127, 29, 29, 0.4), rgba(127, 29, 29, 0.1));
-        }
-      `}</style>
+      
     </div>
   </div>
 </div>
+
+
+
+
+
+
+<div className="bg-red-900 py-10 px-5">
+  <h2 className="text-3xl font-bold mb-4 text-white text-center py-5">
+    Lal Kitab Webinar में आप सीखेगें
+  </h2>
+
+  <div className="max-w-4xl mx-auto flex items-start relative">
+    {/* Central Vertical Line */}
+    <div className="absolute left-1/2 top-0 h-full border-l-4 border-white transform -translate-x-1/2" />
+
+    {/* Right Section for Step 1 */}
+    <div className="w-1/2 p-4 flex flex-col items-end mb-8">
+    
+      <ul className="text-white list-disc list-inside ml-2">
+      <p className="text-7xl text-white text-left">01</p>
+      <h3 className="text-2xl font-semibold mb-2 text-white">Personal, Professional, Relationship Tips</h3>
+
+        <li>Learn how to apply Lal Kitab Insights</li>
+        <li>In-depth remedies about career, business, relationship, health, etc.</li>
+        <li>Mantras, Predictions & more</li>
+        <li>Bonus Secret Tips & Tricks</li>
+      </ul>
+    </div>
+
+    {/* Left Section for Step 2 */}
+    <div className="w-1/2 p-4 flex flex-col items-start mb-8 ml-6">
+
+      <ul className="text-white list-disc list-inside ml-4">
+      <p className="text-7xl text-white">02</p>
+      <h3 className="text-2xl font-semibold mb-2 text-white">Introduction to Lal Kitab</h3>
+        <li>Lal Kitab Principles</li>
+        <li>Significance of Lal Kitab</li>
+        <li>Planetary Influences & its impact</li>
+        <li>Karmic Analysis</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Centered Bottom Section for Step 3 */}
+  <div className="max-w-4xl mx-auto flex flex-col items-center mb-8 mt-5">
+   
+    <ul className="text-white list-disc list-inside ml-4">
+    <p className="text-7xl text-white text-center">03</p>
+    <h3 className="text-2xl font-semibold mb-2 text-white">Introduction to Lal Kitab</h3>
+      <li>Doshas & Dasha Analysis</li>
+      <li>Learn Practical Remedies</li>
+      <li>Create personalized Lal Kitab Remedies</li>
+      <li>Personalized Lal Kitab techniques</li>
+    </ul>
+  </div>
+</div>
+
+
+
 
 
     </div>

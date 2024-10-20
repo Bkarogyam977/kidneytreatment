@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '8000',
+        protocol: 'https', // Change 'http, https' to just 'https'
+        hostname: 'www.bkarogyam.com', // Remove the comma
+        port: '', // Leave this empty for default port
         pathname: '/media/**',
       },
     ],
