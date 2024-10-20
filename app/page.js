@@ -667,7 +667,7 @@ export default function Home() {
 
 
 {/* Testimonials Section */}
-<div className="testimonial-section md:p-10 bg-blue-500 md:px-[5em] p-5">
+<div className="testimonial-section md:p-10 bg-blue-500 md:px-[5em] p-5 mt-10">
   <Swiper
     slidesPerView={1}
     spaceBetween={20}
@@ -785,7 +785,7 @@ export default function Home() {
 
 
 
-<div className='md:py-10 py-5'>
+<div className='md:py-10 py-5 mb-10 px-10'>
   <h2 className="md:text-5xl text-2xl font-bold mb-4 text-center text-black">Frequently Asked Questions</h2>
   <Collapse defaultActiveKey={['1']}>
     {/* Static FAQ Items */}
@@ -846,6 +846,49 @@ export default function Home() {
 
     {/* Add more static FAQs as needed */}
   </Collapse>
+</div>
+
+
+
+
+
+{/* Countdown Timer Section */}
+<div className="fixed bottom-0 left-0 right-0 py-1 text-center flex items-center justify-between px-10 bg-red-900 z-10">
+  <div className="text-center text-2xl font-bold text-white">
+    <p>₹11/- (Few Seats Left)</p>
+  </div>
+
+  <div className="flex justify-center gap-10 text-3xl font-bold text-white">
+    <span className="animate-zoom-out">{countdown.days} Days</span>
+    <span className="animate-zoom-out">{countdown.hours} Hours</span>
+    <span className="animate-zoom-out">{countdown.minutes} Minutes</span>
+    <span className="animate-zoom-out">{countdown.seconds} Seconds</span>
+  </div>
+
+  {/* Button Section */}
+  <button className="bg-[#cab641] hover:bg-red-900 hover:text-white text-white font-bold py-2 px-4 rounded relative overflow-hidden group">
+    <span className="z-10 relative">Avail Yours! Register Now</span>
+    <div className="absolute inset-0 w-full h-full bg-transparent animate-wave5 group-hover:animate-wave-hover"></div>
+  </button>
+  
+  <style jsx>{`
+    @keyframes wave5 {
+      0% {
+        background: linear-gradient(90deg, #7f1d1d, #991b1b); 
+      }
+      50% {
+        background: linear-gradient(90deg, #991b1b, #7f1d1d);
+      }
+      100% {
+        background: linear-gradient(90deg, #7f1d1d, #991b1b);
+      }
+    }
+
+    .animate-wave5 {
+      animation: wave 2s infinite;
+      background: linear-gradient(90deg, rgba(127, 29, 29, 0.1), rgba(127, 29, 29, 0.4), rgba(127, 29, 29, 0.1));
+    }
+  `}</style>
 </div>
 
 
