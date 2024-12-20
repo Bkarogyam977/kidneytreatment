@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https', // Change 'http, https' to just 'https'
-        hostname: 'www.bkarogyam.com', // Remove the comma
+        hostname: 'www.main.bkarogyam.com', // Remove the comma
         port: '', // Leave this empty for default port
         pathname: '/media/**',
       },
