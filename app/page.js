@@ -24,7 +24,7 @@ export default function Home() {
   
   // Fetch data from the API on component mount
   useEffect(() => {
-    axios.get('https://www.bkarogyam.com/lapiskidneytreatments/')
+    axios.get('https://www.main.bkarogyam.com/lapiskidneytreatments/')
       .then(response => {
         setData(response.data[0]);
       })
